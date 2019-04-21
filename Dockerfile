@@ -1,16 +1,4 @@
-FROM golang:1.11
-
-RUN mkdir /go_test
-
-WORKDIR /go_test
-
-ADD . /go_test
-
-#install chi
-RUN go get github.com/go-chi/chi
-RUN go get github.com/zephinzer/godev
-RUN go install github.com/go-chi/chi
-
-# RUN go build ./main.go
-
-# CMD ["./main"]
+FROM zephinzer/go:1.11
+ARG PROJECT_NAME=app
+WORKDIR /go/src/${PROJECT_NAME}
+COPY . /go/src/${PROJECT_NAME}

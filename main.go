@@ -1,29 +1,17 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	"bytes"
 
-	"./stringutil"
+	"go_test/logger"
 
-	"github.com/go-chi/chi"
+	"github.com/spf13/viper"
 )
 
 func main() {
-	r := chi.NewRouter()
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(stringutil.Reverse("DBS")))
-	})
-
-	r.Get("/a", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(stringutil.Reverse("!oG ,olleH")))
-	})
-
-	r.Get("/b", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(stringutil.Reverse("!ob")))
-	})
-
-	log.Println("Server listening to PORT: 8081")
-
-	http.ListenAndServe(":8080", r)
+	logger.Info("HELLO")
+	var addr bytes.Buffer
+	addr.WriteString("0.0.0.0:")
+	addr.WriteString(viper.GetString("port"))
+	logger.Infof("Attempting to listen on http://%s", addr.String())
 }
