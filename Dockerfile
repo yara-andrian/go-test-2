@@ -1,4 +1,0 @@
-FROM zephinzer/go:1.11
-ARG PROJECT_NAME=app
-WORKDIR /go/src/${PROJECT_NAME}
-COPY . /go/src/${PROJECT_NAME}
